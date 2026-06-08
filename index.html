@@ -2,52 +2,40 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Launching animation...</title>
-
-<style>
-body {
-  font-family: sans-serif;
-  text-align: center;
-  margin-top: 60px;
-}
-</style>
+<title>Launch animation</title>
 </head>
 
-<body>
+<body style="text-align:center; font-family:sans-serif; margin-top:80px;">
 
-<p>Opening animation…</p>
+<h2>Yeast animation launcher</h2>
+
+<button id="btn" style="font-size:18px; padding:10px 20px;">
+  Open animation
+</button>
 
 <script>
 const url = "https://wbakker10.github.io/BRP-2026-animations/population_animation.html";
 
-// center popup
-const width = 1100;
-const height = 750;
+document.getElementById("btn").onclick = () => {
 
-const left = (screen.width - width) / 2;
-const top = (screen.height - height) / 2;
+  const width = 1100;
+  const height = 750;
 
-const w = window.open(
-  url,
-  "animation",
-  `width=${width},height=${height},left=${left},top=${top}`
-);
+  const left = (screen.width - width) / 2;
+  const top = (screen.height - height) / 2;
 
-if (w) {
-  w.focus();
+  const w = window.open(
+    url,
+    "animation",
+    `width=${width},height=${height},left=${left},top=${top}`
+  );
 
-  // optional fullscreen attempt (may be blocked by Firefox)
-  setTimeout(() => {
-    try {
-      w.document.documentElement.requestFullscreen?.();
-    } catch (e) {}
-  }, 500);
-
-  window.location.replace("about:blank");
-} else {
-  document.body.innerHTML =
-    `<a href="${url}" target="_blank">Open animation</a>`;
-}
+  if (w) {
+    w.focus();
+  } else {
+    alert("Popup blocked. Please allow popups for this site.");
+  }
+};
 </script>
 
 </body>
